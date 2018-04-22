@@ -11,13 +11,13 @@ public class Main {
 	public static void main(String[] args) {
 		Dictionary dc = new Dictionary();
 		try {
-			String str = "no";
+			String str = "oo";
 			ArrayList<Character> chars = new ArrayList<Character>();
 			for (char c : str.toCharArray()) {
 				chars.add(c);
 			}
 			
-			ArrayList<String> lista = dc.findMatchingWords(4, chars);
+			ArrayList<String> lista = dc.findMatchingWords(3, chars);
 			System.out.print(lista);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

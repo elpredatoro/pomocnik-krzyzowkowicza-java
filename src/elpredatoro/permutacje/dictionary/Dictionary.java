@@ -30,15 +30,13 @@ public class Dictionary {
 		mainLoop:
 		for(String word : words){
 			int matches = 0;
-			ArrayList<Integer> matched = new ArrayList<Integer>();
+			String wordCut = word;
 			
 			for(Character c : chars) {
-				int index = word.indexOf(c);
+				int index = wordCut.indexOf(c);
 				if(index != -1) {
-					if(!matched.contains(index)) {
-						matches++;
-						matched.add(index);
-					}
+					wordCut = wordCut.substring(0, index) + wordCut.substring(index+1);
+					matches++;
 				}else{
 					continue mainLoop;
 				}
