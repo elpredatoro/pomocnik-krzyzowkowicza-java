@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 
 import elpredatoro.permutacje.dictionary.Dictionary;
 
+/**
+ * @author Andrzej Sobel <andrzej.sobel@gmail.com>
+ */
 public class MainFrame extends JFrame implements ActionListener {
 
 	private int width = 800;

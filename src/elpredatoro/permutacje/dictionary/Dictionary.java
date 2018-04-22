@@ -8,6 +8,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author Andrzej Sobel <andrzej.sobel@gmail.com>
+ */
 public class Dictionary {
 	public Dictionary() {
 		
