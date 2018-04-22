@@ -12,6 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import elpredatoro.permutacje.dictionary.Dictionary;
 
@@ -36,8 +38,12 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame() {
 		super("Permutacje");
 		
-		initFrame();
-		initComponents();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				initFrame();
+				initComponents();
+			}
+		});
 	}
 	
 	private void initFrame() {
@@ -83,38 +89,61 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		System.out.printf("\nButton clicked, input: %s, legth: %s", this.inputText.getText(), this.wordLength.getSelectedItem().toString());
+		SwingWorker worker = new SwingWorker<Boolean, Void>(){
+			@Override
+			public Boolean doInBackground() {
+				
+				System.out.printf("\nButton clicked, input: %s, legth: %s", inputText.getText(), wordLength.getSelectedItem().toString());
+				Dictionary dc = new Dictionary();
+				try {
+					String str = null;
+					int len = 0;
+					if(inputText.getText() != null && !inputText.getText().isEmpty()
+							&& wordLength.getSelectedItem().toString() != null && !wordLength.getSelectedItem().toString().isEmpty()) {
+						str = inputText.getText();
+						len = Integer.parseInt(wordLength.getSelectedItem().toString());
+					}else{
+						System.err.println("Missing parameters");
+					}
+					
+					ArrayList<Character> chars = new ArrayList<Character>();
+					for (char c : str.toCharArray()) {
+						chars.add(c);
+					}
+					
+					ArrayList<String> lista = dc.findMatchingWords(len, chars);
+					System.out.printf("\nFound: %s", lista);
+					
+					outputText.setText("");
+					for(String w : lista) {
+						outputText.insert(w+"\n", 0);
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return true;
+			}
+		};
 		
-		Dictionary dc = new Dictionary();
-		try {
-			String str;
-			int len;
-			if(this.inputText.getText() != null && !this.inputText.getText().isEmpty()
-					&& this.wordLength.getSelectedItem().toString() != null && !this.wordLength.getSelectedItem().toString().isEmpty()) {
-				str = this.inputText.getText();
-				len = Integer.parseInt(this.wordLength.getSelectedItem().toString());
-			}else{
-				throw new Exception("missing parameters");
+		//System.out.printf("\nButton clicked, input: %s, legth: %s", this.inputText.getText(), this.wordLength.getSelectedItem().toString());
+		
+		this.searchButton.setEnabled(false);
+		this.inputText.setEditable(false);
+		
+		worker.execute();
+		
+		while(!worker.isDone()){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			ArrayList<Character> chars = new ArrayList<Character>();
-			for (char c : str.toCharArray()) {
-				chars.add(c);
-			}
-			
-			ArrayList<String> lista = dc.findMatchingWords(len, chars);
-			System.out.printf("\nFound: %s", lista);
-			
-			this.outputText.setText("");
-			for(String w : lista) {
-				this.outputText.setText(this.outputText.getText() + w + "\n");
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		
+		this.searchButton.setEnabled(true);
+		this.inputText.setEditable(true);
 	}
 }

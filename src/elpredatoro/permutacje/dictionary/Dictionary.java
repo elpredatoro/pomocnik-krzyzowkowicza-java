@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
  */
 public class Dictionary {
+	private int max = 100;
+	
 	public Dictionary() {
 		
 	}
@@ -47,6 +49,10 @@ public class Dictionary {
 			
 			if(matches == charLength){
 				matchingWords.add(word);
+				
+				if(matchingWords.size() >= max) {
+					break mainLoop;
+				}
 			}
 		}
 		
