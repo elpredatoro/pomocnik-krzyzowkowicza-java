@@ -83,7 +83,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		System.out.println("Do Something Clicked, input: "+this.inputText.getText()+" length: "+this.wordLength.getSelectedItem().toString());
+		System.out.printf("\nButton clicked, input: %s, legth: %s", this.inputText.getText(), this.wordLength.getSelectedItem().toString());
 		
 		Dictionary dc = new Dictionary();
 		try {
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			}
 			
 			ArrayList<String> lista = dc.findMatchingWords(len, chars);
-			System.out.print(lista);
+			System.out.printf("\nFound: %s", lista);
 			
 			this.outputText.setText("");
 			for(String w : lista) {
