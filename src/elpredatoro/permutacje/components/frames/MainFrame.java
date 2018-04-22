@@ -89,7 +89,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		SwingWorker worker = new SwingWorker<Boolean, Void>(){
+		SwingWorker bw = new SwingWorker<Boolean, Void>(){
 			@Override
 			public Boolean doInBackground() {
 				
@@ -132,11 +132,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.searchButton.setEnabled(false);
 		this.inputText.setEditable(false);
 		
-		worker.execute();
+		bw.execute();
 		
-		while(!worker.isDone()){
+		while(!bw.isDone()){
 			try {
-				Thread.sleep(500);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
