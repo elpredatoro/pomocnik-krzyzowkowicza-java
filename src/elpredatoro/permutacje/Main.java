@@ -1,7 +1,8 @@
 package elpredatoro.permutacje;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import elpredatoro.permutacje.dictionary.Dictionary;
 
@@ -10,7 +11,13 @@ public class Main {
 	public static void main(String[] args) {
 		Dictionary dc = new Dictionary();
 		try {
-			List<String> lista = dc.find(4);
+			String str = "no";
+			ArrayList<Character> chars = new ArrayList<Character>();
+			for (char c : str.toCharArray()) {
+				chars.add(c);
+			}
+			
+			ArrayList<String> lista = dc.findMatchingWords(4, chars);
 			System.out.print(lista);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
