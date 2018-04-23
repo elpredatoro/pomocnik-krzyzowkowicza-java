@@ -2,25 +2,18 @@ package elpredatoro.permutacje.components.frames;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
-
-import elpredatoro.permutacje.dictionary.Dictionary;
+import elpredatoro.permutacje.components.buttons.SearchButton;
 
 /**
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
  */
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame {
 
 	private int width = 800;
 	private int height = 600;
@@ -59,8 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	private void initComponents() {
-		searchButton = new JButton("Szukaj");
-		searchButton.addActionListener(this);
+		searchButton = new SearchButton(this, "Szukaj");
 		
 		wordLength = new JComboBox<String>();
 		for(int x=0; x<15; x++) {
@@ -80,70 +72,35 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.add(outputText);
 	}
 	
-	private void loadConfig() {
-		
+	public JButton getSearchButton() {
+		return searchButton;
 	}
-	
-	private void saveConfig() {
-		
+
+	public void setSearchButton(JButton searchButton) {
+		this.searchButton = searchButton;
 	}
-	
-	public void actionPerformed(ActionEvent event) {
-		SwingWorker bw = new SwingWorker<Boolean, Void>(){
-			@Override
-			public Boolean doInBackground() {
-				
-				System.out.printf("\nButton clicked, input: %s, legth: %s", inputText.getText(), wordLength.getSelectedItem().toString());
-				Dictionary dc = new Dictionary();
-				try {
-					String str = null;
-					int len = 0;
-					if(inputText.getText() != null && !inputText.getText().isEmpty()
-							&& wordLength.getSelectedItem().toString() != null && !wordLength.getSelectedItem().toString().isEmpty()) {
-						str = inputText.getText();
-						len = Integer.parseInt(wordLength.getSelectedItem().toString());
-					}else{
-						System.err.println("Missing parameters");
-					}
-					
-					ArrayList<Character> chars = new ArrayList<Character>();
-					for (char c : str.toCharArray()) {
-						chars.add(c);
-					}
-					
-					ArrayList<String> lista = dc.findMatchingWords(len, chars);
-					System.out.printf("\nFound: %s", lista);
-					
-					outputText.setText("");
-					for(String w : lista) {
-						outputText.insert(w+"\n", 0);
-					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				return true;
-			}
-		};
-		
-		//System.out.printf("\nButton clicked, input: %s, legth: %s", this.inputText.getText(), this.wordLength.getSelectedItem().toString());
-		
-		this.searchButton.setEnabled(false);
-		this.inputText.setEditable(false);
-		
-		bw.execute();
-		
-		while(!bw.isDone()){
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		this.searchButton.setEnabled(true);
-		this.inputText.setEditable(true);
+
+	public JTextField getInputText() {
+		return inputText;
+	}
+
+	public void setInputText(JTextField inputText) {
+		this.inputText = inputText;
+	}
+
+	public JTextArea getOutputText() {
+		return outputText;
+	}
+
+	public void setOutputText(JTextArea outputText) {
+		this.outputText = outputText;
+	}
+
+	public JComboBox<String> getWordLength() {
+		return wordLength;
+	}
+
+	public void setWordLength(JComboBox<String> wordLength) {
+		this.wordLength = wordLength;
 	}
 }
