@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
 	private JComboBox<String> wordLength;
 	
 	public MainFrame() {
-		super("Permutacje");
+		super("Pomocnik krzyżówkowicza");
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -74,7 +74,7 @@ public class MainFrame extends JFrame {
 		inputText = new InputTextField(this, "");
 		JLabel inputTextLabel = new JLabel("Wpisz szukane litery");
 		inputTextLabel.setLabelFor(inputText);
-		outputText = new OutputTextField(this, "Wynik wyszukiwania");
+		outputText = new OutputTextField(this, "Wynik wyszukiwania (max 1000)");
 		
 		outputTextScroll = new OutputTextScroll(this, outputText);
 		

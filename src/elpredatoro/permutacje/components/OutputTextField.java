@@ -13,7 +13,7 @@ public class OutputTextField extends JTextArea {
 	private int width = 340;
 	private int height = 550;
 	
-	private int rows = 100;
+	private int rows = 1000;
 	
 	public OutputTextField(MainFrame main, String value) {
 		super(value);

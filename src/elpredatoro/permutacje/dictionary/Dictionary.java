@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
  */
 public class Dictionary {
-	private int max = 100;
+	private int max = 1000;
 	
 	public Dictionary() {
 		
