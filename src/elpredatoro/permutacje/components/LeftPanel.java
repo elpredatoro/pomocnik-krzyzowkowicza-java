@@ -20,6 +20,6 @@ public class LeftPanel extends JPanel {
 		
 		this.setSize(new Dimension(width, height));
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBackground(new Color(111, 111, 111));
+//		this.setBackground(new Color(111, 111, 111));
 	}
 }
