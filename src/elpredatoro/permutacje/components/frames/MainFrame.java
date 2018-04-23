@@ -8,7 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import elpredatoro.permutacje.components.buttons.SearchButton;
+
+import elpredatoro.permutacje.components.InputTextField;
+import elpredatoro.permutacje.components.OutputTextField;
+import elpredatoro.permutacje.components.SearchButton;
+import elpredatoro.permutacje.components.SelectWordLength;
 
 /**
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
@@ -53,18 +57,9 @@ public class MainFrame extends JFrame {
 	
 	private void initComponents() {
 		searchButton = new SearchButton(this, "Szukaj");
-		
-		wordLength = new JComboBox<String>();
-		for(int x=0; x<15; x++) {
-			wordLength.addItem(String.valueOf(x+1));
-		}
-		
-		inputText = new JTextField("input");
-		inputText.setToolTipText("Wpisz szukane litery");
-		inputText.setColumns(50);
-		
-		outputText = new JTextArea("output", 20, 30);
-		outputText.setEditable(false);
+		wordLength = new SelectWordLength(this);
+		inputText = new InputTextField(this, "Wpisz szukane litery");
+		outputText = new OutputTextField(this, "Wynik wyszukiwania");
 		
 		this.add(searchButton);
 		this.add(wordLength);

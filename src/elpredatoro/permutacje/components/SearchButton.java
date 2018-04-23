@@ -1,4 +1,4 @@
-package elpredatoro.permutacje.components.buttons;
+package elpredatoro.permutacje.components;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,10 +33,13 @@ public class SearchButton extends JButton implements ActionListener {
 					String str = null;
 					int len = 0;
 					if(main.getInputText().getText() != null && !main.getInputText().getText().isEmpty()
-							&& main.getWordLength().getSelectedItem().toString() != null && !main.getWordLength().getSelectedItem().toString().isEmpty()) {
+							&& main.getWordLength().getSelectedItem().toString() != null && !main.getWordLength().getSelectedItem().toString().isEmpty()
+							&& main.getInputText().getText().length() <= Integer.parseInt(main.getWordLength().getSelectedItem().toString())) {
 						str = main.getInputText().getText();
 						len = Integer.parseInt(main.getWordLength().getSelectedItem().toString());
-					}else{
+					} else if(main.getInputText().getText().length() > Integer.parseInt(main.getWordLength().getSelectedItem().toString())) {
+						System.err.println("Too many input letters");
+					} else {
 						System.err.println("Missing parameters");
 					}
 					
