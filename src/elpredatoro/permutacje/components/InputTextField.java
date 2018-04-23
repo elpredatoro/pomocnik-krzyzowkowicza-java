@@ -13,6 +13,6 @@ public class InputTextField extends JTextField {
 		this.main = main;
 		
 		this.setToolTipText("Wpisz szukane litery");
-		this.setColumns(50);
+		this.setColumns(30);
 	}
 }

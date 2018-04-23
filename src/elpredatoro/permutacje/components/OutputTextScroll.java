@@ -2,26 +2,21 @@ package elpredatoro.permutacje.components;
 
 import java.awt.Dimension;
 
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
 import elpredatoro.permutacje.components.frames.MainFrame;
 
-public class OutputTextField extends JTextArea {
+public class OutputTextScroll extends JScrollPane {
 	private MainFrame main;
 	
-	private int width = 340;
-	private int height = 550;
+	private int width = 360;
+	private int height = 540;
 	
-	private int rows = 100;
-	
-	public OutputTextField(MainFrame main, String value) {
-		super(value);
+	public OutputTextScroll(MainFrame main, JComponent component) {
+		super(component);
 		
 		this.main = main;
 		
 		this.setPreferredSize(new Dimension(width, height));
-		this.setRows(rows);
-		this.setEditable(false);
 	}
 }
