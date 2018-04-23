@@ -45,7 +45,7 @@ public class SearchButton extends JButton implements ActionListener {
 					
 					ArrayList<Character> chars = new ArrayList<Character>();
 					for (char c : str.toCharArray()) {
-						chars.add(c);
+						chars.add(Character.toLowerCase(c));
 					}
 					
 					ArrayList<String> lista = dc.findMatchingWords(len, chars);

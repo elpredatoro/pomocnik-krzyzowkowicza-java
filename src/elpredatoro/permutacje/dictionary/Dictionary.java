@@ -35,7 +35,7 @@ public class Dictionary {
 		mainLoop:
 		for(String word : words){
 			int matches = 0;
-			String wordCut = word;
+			String wordCut = word.toLowerCase();
 			
 			for(Character c : chars) {
 				int index = wordCut.indexOf(c);
