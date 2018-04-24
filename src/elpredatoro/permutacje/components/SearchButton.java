@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import elpredatoro.permutacje.components.frames.MainFrame;
@@ -39,8 +40,10 @@ public class SearchButton extends JButton implements ActionListener {
 						len = Integer.parseInt(main.getWordLength().getSelectedItem().toString());
 					} else if(main.getInputText().getText().length() > Integer.parseInt(main.getWordLength().getSelectedItem().toString())) {
 						System.err.println("Too many input letters");
+						//JOptionPane.showMessageDialog(main, "Wpisałeś za dużo liter", "Błąd", JOptionPane.PLAIN_MESSAGE);
 					} else {
 						System.err.println("Missing parameters");
+						//JOptionPane.showMessageDialog(main, "Wpisałeś za dużo liter", "Błąd", JOptionPane.PLAIN_MESSAGE);
 					}
 					
 					ArrayList<Character> chars = new ArrayList<Character>();
@@ -51,10 +54,13 @@ public class SearchButton extends JButton implements ActionListener {
 					ArrayList<String> lista = dc.findMatchingWords(len, chars);
 					System.out.printf("\nFound: %s", lista);
 					
-					main.getOutputText().setText("");
+					StringBuffer sb = new StringBuffer();
+					
 					for(String w : lista) {
-						main.getOutputText().insert(w+"\n", 0);
+						sb.append(w+"\n");
 					}
+					
+					main.getOutputText().setText(sb.toString());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
