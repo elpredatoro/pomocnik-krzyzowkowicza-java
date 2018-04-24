@@ -48,7 +48,6 @@ public class MainFrame extends JFrame {
 		super();
 		
 		Data data = new Data();
-		
 		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion());
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -57,6 +56,8 @@ public class MainFrame extends JFrame {
 				initComponents();
 			}
 		});
+		
+		// TODO sprawdzanie czy plik słownika istnieje
 	}
 	
 	private void initFrame() {
