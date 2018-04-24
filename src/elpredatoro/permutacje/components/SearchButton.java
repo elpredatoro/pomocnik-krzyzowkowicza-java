@@ -25,7 +25,7 @@ public class SearchButton extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		SwingWorker<Boolean, Void> bw = new SwingWorker<Boolean, Void>(){
+		SwingWorker<Boolean, Void> backgroundWorker = new SwingWorker<Boolean, Void>(){
 			@Override
 			public Boolean doInBackground() {
 				
@@ -76,9 +76,9 @@ public class SearchButton extends JButton implements ActionListener {
 		main.getSearchButton().setEnabled(false);
 		main.getInputText().setEditable(false);
 		
-		bw.execute();
+		backgroundWorker.execute();
 		
-		while(!bw.isDone()){
+		while(!backgroundWorker.isDone()){
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
