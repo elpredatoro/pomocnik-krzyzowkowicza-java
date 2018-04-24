@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import elpredatoro.permutacje.Data;
 import elpredatoro.permutacje.components.InputTextField;
 import elpredatoro.permutacje.components.LeftPanel;
 import elpredatoro.permutacje.components.OutputTextField;
@@ -44,7 +45,11 @@ public class MainFrame extends JFrame {
 	private JComboBox<String> wordLength;
 	
 	public MainFrame() {
-		super("Pomocnik krzyżówkowicza");
+		super();
+		
+		Data data = new Data();
+		
+		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion());
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
