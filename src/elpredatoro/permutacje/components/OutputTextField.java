@@ -2,13 +2,14 @@ package elpredatoro.permutacje.components;
 
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import elpredatoro.permutacje.components.frames.MainFrame;
 
 public class OutputTextField extends JTextArea {
-	private MainFrame main;
+	private static final long serialVersionUID = 8876384850305968817L;
+
+	//private MainFrame main;
 	
 	private int width = 340;
 	private int height = 550;
@@ -18,7 +19,7 @@ public class OutputTextField extends JTextArea {
 	public OutputTextField(MainFrame main, String value) {
 		super(value);
 		
-		this.main = main;
+		//this.main = main;
 		
 		this.setPreferredSize(new Dimension(width, height));
 		this.setRows(rows);

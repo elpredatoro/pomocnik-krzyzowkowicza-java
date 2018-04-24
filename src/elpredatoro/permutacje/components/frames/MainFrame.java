@@ -3,7 +3,6 @@ package elpredatoro.permutacje.components.frames;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,14 +25,15 @@ import elpredatoro.permutacje.components.SelectWordLength;
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
  */
 public class MainFrame extends JFrame {
-
+	private static final long serialVersionUID = 6762993361955762012L;
+	
 	private int width = 800;
 	private int height = 600;
 	
 	private int minWidth = 800;
 	private int minHeight = 600;
 	
-	private String iconImage = "";
+	//private String iconImage = "";
 	
 	private JPanel leftPanel;
 	private JPanel rightPanel;

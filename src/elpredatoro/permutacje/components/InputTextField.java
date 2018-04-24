@@ -7,7 +7,9 @@ import javax.swing.JTextField;
 import elpredatoro.permutacje.components.frames.MainFrame;
 
 public class InputTextField extends JTextField {
-	private MainFrame main;
+	private static final long serialVersionUID = 8594418743107197681L;
+
+	//private MainFrame main;
 	
 	private int width = 350;
 	private int height = 30;
@@ -15,7 +17,7 @@ public class InputTextField extends JTextField {
 	public InputTextField(MainFrame main, String value) {
 		super(value);
 		
-		this.main = main;
+		//this.main = main;
 		
 		this.setToolTipText("Wpisz szukane litery");
 		

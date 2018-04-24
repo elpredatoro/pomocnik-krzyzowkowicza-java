@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import elpredatoro.permutacje.components.frames.MainFrame;
 import elpredatoro.permutacje.dictionary.Dictionary;
 
 public class SearchButton extends JButton implements ActionListener {
+	private static final long serialVersionUID = -5685971972540992464L;
+	
 	private MainFrame main;
 	
 	public SearchButton(MainFrame main, String label) {
@@ -24,7 +25,7 @@ public class SearchButton extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		SwingWorker bw = new SwingWorker<Boolean, Void>(){
+		SwingWorker<Boolean, Void> bw = new SwingWorker<Boolean, Void>(){
 			@Override
 			public Boolean doInBackground() {
 				
