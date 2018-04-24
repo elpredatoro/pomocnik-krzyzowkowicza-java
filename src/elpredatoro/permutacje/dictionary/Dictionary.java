@@ -96,6 +96,8 @@ public class Dictionary {
 	public void add(String word) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("slownik.txt", true));
 		
+		// TODO sprawdzanie czy wyraz istnieje
+		
 		bw.append(word);
 		bw.newLine();
 		bw.close();
