@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
 		super();
 		
 		Data data = new Data();
-		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion());
+		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion()+" by "+data.getAuthorNick());
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
