@@ -10,6 +10,8 @@ import javax.swing.SwingWorker;
 
 import elpredatoro.permutacje.components.frames.MainFrame;
 import elpredatoro.permutacje.dictionary.Dictionary;
+import elpredatoro.permutacje.exceptions.MissingParametersException;
+import elpredatoro.permutacje.exceptions.TooManyInputLettersException;
 
 public class SearchButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = -5685971972540992464L;
@@ -29,7 +31,7 @@ public class SearchButton extends JButton implements ActionListener {
 			@Override
 			public Boolean doInBackground() {
 				
-				System.out.printf("\nButton clicked, input: %s, legth: %s", main.getInputText().getText(), main.getWordLength().getSelectedItem().toString());
+				// System.out.printf("\nButton clicked, input: %s, legth: %s", main.getInputText().getText(), main.getWordLength().getSelectedItem().toString());
 				Dictionary dc = new Dictionary();
 				try {
 					String str = null;
@@ -40,11 +42,13 @@ public class SearchButton extends JButton implements ActionListener {
 						str = main.getInputText().getText();
 						len = Integer.parseInt(main.getWordLength().getSelectedItem().toString());
 					} else if(main.getInputText().getText().length() > Integer.parseInt(main.getWordLength().getSelectedItem().toString())) {
-						System.err.println("Too many input letters");
+						// System.err.println("Too many input letters");
+						throw new TooManyInputLettersException("Too many input letters");
 						//JOptionPane.showMessageDialog(main, "Wpisałeś za dużo liter", "Błąd", JOptionPane.PLAIN_MESSAGE);
 					} else {
-						System.err.println("Missing parameters");
-						//JOptionPane.showMessageDialog(main, "Wpisałeś za dużo liter", "Błąd", JOptionPane.PLAIN_MESSAGE);
+						// System.err.println("Missing parameters");
+						throw new MissingParametersException("Missing parameters");
+						// JOptionPane.showMessageDialog(main, "Wpisałeś za dużo liter", "Błąd", JOptionPane.PLAIN_MESSAGE);
 					}
 					
 					ArrayList<Character> chars = new ArrayList<Character>();
@@ -53,7 +57,7 @@ public class SearchButton extends JButton implements ActionListener {
 					}
 					
 					ArrayList<String> lista = dc.findMatchingWords(len, chars);
-					System.out.printf("\nFound: %s", lista);
+					// System.out.printf("\nFound: %s", lista);
 					
 					StringBuffer sb = new StringBuffer();
 					
@@ -63,6 +67,9 @@ public class SearchButton extends JButton implements ActionListener {
 					
 					main.getOutputText().setText(sb.toString());
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
