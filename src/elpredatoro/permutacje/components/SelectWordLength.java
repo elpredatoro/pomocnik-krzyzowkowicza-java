@@ -18,7 +18,7 @@ public class SelectWordLength extends JComboBox<String> {
 		
 		//this.main = main;
 		
-		for(int x=0; x<15; x++) {
+		for(int x=0; x<30; x++) {
 			this.addItem(String.valueOf(x+1));
 		}
 		
