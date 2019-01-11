@@ -1,12 +1,12 @@
 package elpredatoro.permutacje;
 
 public class Data {
-	private String version = "0.4";
-	private int majorVersion = 0;
-	private int minorVersion = 4;
+	private String version;
+	private Integer majorVersion = 0;
+	private Integer minorVersion = 4;
 	
 	public Data() {
-		
+		version = majorVersion.toString() + "." + minorVersion.toString();
 	}
 
 	public String getVersion() {
@@ -21,7 +21,7 @@ public class Data {
 		return majorVersion;
 	}
 
-	public void setMajorVersion(int majorVersion) {
+	public void setMajorVersion(Integer majorVersion) {
 		this.majorVersion = majorVersion;
 	}
 
@@ -29,7 +29,7 @@ public class Data {
 		return minorVersion;
 	}
 
-	public void setMinorVersion(int minorVersion) {
+	public void setMinorVersion(Integer minorVersion) {
 		this.minorVersion = minorVersion;
 	}
 }
