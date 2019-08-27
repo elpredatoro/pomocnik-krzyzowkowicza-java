@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Dictionary {
 	private int max = 1000;
 	
+	private String DICTIONARY_FILE = "slownik.txt";
+	
 	public Dictionary() {
 		
 	}
@@ -69,7 +71,7 @@ public class Dictionary {
 	private ArrayList<String> findWordsByLength(int length) throws IOException {
 		ArrayList<String> words = new ArrayList<String>();
 		
-		BufferedReader br = new BufferedReader(new FileReader("slownik.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
 		
 		String line = br.readLine();
 
@@ -94,7 +96,7 @@ public class Dictionary {
 	 * @throws IOException
 	 */
 	public void add(String word) throws IOException {
-		BufferedWriter bw = new BufferedWriter(new FileWriter("slownik.txt", true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(DICTIONARY_FILE, true));
 		
 		// TODO sprawdzanie czy wyraz istnieje
 		
