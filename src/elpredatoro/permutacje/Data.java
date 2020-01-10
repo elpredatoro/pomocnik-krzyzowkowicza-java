@@ -3,7 +3,7 @@ package elpredatoro.permutacje;
 public class Data {
 	private String version;
 	private Integer majorVersion = 0;
-	private Integer minorVersion = 4;
+	private Integer minorVersion = 5;
 	private String authorName = "Andrzej Sobel";
 	private String authorNick = "elpredatoro";
 	
