@@ -1,26 +1,10 @@
 package elpredatoro.permutacje.components.frames;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 
 import elpredatoro.permutacje.Data;
-import elpredatoro.permutacje.components.InputTextField;
-import elpredatoro.permutacje.components.LeftPanel;
-import elpredatoro.permutacje.components.OutputTextField;
-import elpredatoro.permutacje.components.OutputTextScroll;
-import elpredatoro.permutacje.components.RightPanel;
-import elpredatoro.permutacje.components.SearchButton;
-import elpredatoro.permutacje.components.SelectWordLength;
+import elpredatoro.permutacje.components.*;
 
 /**
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
@@ -50,12 +34,8 @@ public class MainFrame extends JFrame {
 		Data data = new Data();
 		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion()+" by "+data.getAuthorNick());
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				initFrame();
-				initComponents();
-			}
-		});
+		initFrame();
+		initComponents();
 		
 		// TODO sprawdzanie czy plik słownika istnieje
 	}
