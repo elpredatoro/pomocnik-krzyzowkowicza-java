@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,8 +15,36 @@ public class Dictionary {
 	
 	private String DICTIONARY_FILE = "slownik.txt";
 	
+	private ArrayList<String> words;
+	
 	public Dictionary() {
+		try {
+			loadDictionary();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Ladowanie pliku słownika do pamięci
+	 * @throws IOException
+	 */
+	private void loadDictionary() throws IOException {
+		this.words = new ArrayList<>();
 		
+		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
+		
+		String line = br.readLine();
+
+		while (line != null) {
+			line = line.trim();
+			
+			this.words.add(line);
+			
+			line = br.readLine();
+		}
+		
+		br.close();
 	}
 	
 	/**
@@ -71,49 +98,27 @@ public class Dictionary {
 	private ArrayList<String> findWordsByLength(int length) throws IOException {
 		ArrayList<String> words = new ArrayList<>();
 		
-		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
-		
-		String line = br.readLine();
-
-		while (line != null) {
-			line = line.trim();
-			
-			if(line.length() == length) {
-				words.add(line);
+		for (String word : this.words) {
+			if(word.length() == length) {
+				words.add(word);
 			}
-			
-			line = br.readLine();
 		}
-		
-		br.close();
 		
 		return words;
 	}
 	
 	/*
-	 * Znajduje wyrazy ze słownika zawierające określoną ilość znaków
+	 * Sprawdza czy wyraz istnieje w słowniku
 	 * @param length
-	 * @return
+	 * @return boolean
 	 * @throws IOException
 	 */
-	private boolean findWord(String word) throws IOException {
-		ArrayList<String> words = new ArrayList<>();
-		
-		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
-		
-		String line = br.readLine();
-
-		while (line != null) {
-			line = line.trim();
-			
-			if(line.equals(word)) {
+	private boolean findWord(String searched) throws IOException {
+		for (String word : this.words) {
+			if(word.equals(searched)) {
 				return true;
 			}
-			
-			line = br.readLine();
 		}
-		
-		br.close();
 		
 		return false;
 	}
@@ -132,5 +137,7 @@ public class Dictionary {
 		}
 		
 		bw.close();
+		
+		loadDictionary();
 	}
 }

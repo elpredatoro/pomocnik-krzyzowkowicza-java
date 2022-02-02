@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import elpredatoro.permutacje.Data;
 import elpredatoro.permutacje.components.*;
+import elpredatoro.permutacje.dictionary.Dictionary;
 
 /**
  * @author Andrzej Sobel <andrzej.sobel@gmail.com>
@@ -28,8 +29,12 @@ public class MainFrame extends JFrame {
 	private JTextArea outputText;
 	private JComboBox<String> wordLength;
 	
+	public static Dictionary dictionary;
+	
 	public MainFrame() {
 		super();
+		
+		dictionary = new Dictionary();
 		
 		Data data = new Data();
 		this.setTitle("Pomocnik krzyżówkowicza v"+data.getVersion()+" by "+data.getAuthorNick());
