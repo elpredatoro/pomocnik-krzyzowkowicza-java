@@ -28,7 +28,7 @@ public class Dictionary {
 	 * @throws IOException
 	 */
 	public ArrayList<String> findMatchingWords(int length, ArrayList<Character> chars) throws IOException {
-		ArrayList<String> matchingWords = new ArrayList<String>();
+		ArrayList<String> matchingWords = new ArrayList<>();
 		
 		ArrayList<String> words = findWordsByLength(length);
 		
@@ -69,7 +69,7 @@ public class Dictionary {
 	 * @throws IOException
 	 */
 	private ArrayList<String> findWordsByLength(int length) throws IOException {
-		ArrayList<String> words = new ArrayList<String>();
+		ArrayList<String> words = new ArrayList<>();
 		
 		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
 		
@@ -90,6 +90,34 @@ public class Dictionary {
 		return words;
 	}
 	
+	/*
+	 * Znajduje wyrazy ze słownika zawierające określoną ilość znaków
+	 * @param length
+	 * @return
+	 * @throws IOException
+	 */
+	private boolean findWord(String word) throws IOException {
+		ArrayList<String> words = new ArrayList<>();
+		
+		BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
+		
+		String line = br.readLine();
+
+		while (line != null) {
+			line = line.trim();
+			
+			if(line.equals(word)) {
+				return true;
+			}
+			
+			line = br.readLine();
+		}
+		
+		br.close();
+		
+		return false;
+	}
+	
 	/**
 	 * Dodaje wyraz do słownika
 	 * @param word
@@ -98,10 +126,11 @@ public class Dictionary {
 	public void add(String word) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(DICTIONARY_FILE, true));
 		
-		// TODO sprawdzanie czy wyraz istnieje
+		if(!findWord(word)) {
+			bw.append(word);
+			bw.newLine();
+		}
 		
-		bw.append(word);
-		bw.newLine();
 		bw.close();
 	}
 }
